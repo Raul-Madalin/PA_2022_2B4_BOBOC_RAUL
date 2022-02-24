@@ -1,11 +1,12 @@
 package com.company;
 import java.util.Random;
+import java.util.Arrays;
 
 public class Lab1 {
     private static class adjList {
         private int size;
-        private String word;
-        private String[] neighbors;
+        private String name;
+        private String[] neighbors = {"NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
     }
 
     public static void main(String args[]) {
@@ -35,6 +36,11 @@ public class Lab1 {
             word.append(alphabet[k]);
         }
         return word.toString();
+    }
+
+    private void cloneString(String str1, String str2) {
+        System.out.println("FUCK");
+        str1 = str2;
     }
 
     void compulsory() {
@@ -93,17 +99,24 @@ public class Lab1 {
             System.out.println();
         }
 
+        System.out.println();
+
         for (int i = 0; i < n; i++) {
             adjList myList = new adjList();
-            myList.word = words[i];
+            myList.name = words[i];
+            int count = 0;
             for (int j = i; j < n; j++) {
                 if (adjMatrix[i][j] == true) {
-
+                    myList.neighbors[count] = words[j];
+                    count++;
                 }
             }
-            System.out.println(myList.word);
+            System.out.print(myList.name + ": ");
+            for (int j = 0; j < count; j++) {
+                System.out.print(myList.neighbors[j] + " ");
+            }
+            System.out.println();
         }
-
     }
     void bonus() {
         //Do stuff
