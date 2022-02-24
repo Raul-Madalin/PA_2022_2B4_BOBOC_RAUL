@@ -62,7 +62,6 @@ public class Lab1 {
     void homework(int n, int p, int m, char alphabet[]) {
         String[] words = new String[n];
         System.out.print("    ");
-        //System.out.println(n + " " + p + " " + m + " " + alphabet[0]);
         for (int i = 0; i < n; i++) {
             words[i] = createRandomWord(p, alphabet);
             System.out.print(words[i] + "   ");
