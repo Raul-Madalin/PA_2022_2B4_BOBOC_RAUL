@@ -1,12 +1,11 @@
 package com.company;
-import java.util.Random;
-import java.util.Arrays;
+import java.util.*;
 
 public class Lab1 {
     private static class adjList {
         private int size;
         private String name;
-        private String[] neighbors = {"NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
+        private String[] neighbors = {"NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL","NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL", "NULL"};
     }
 
     public static void main(String args[]) {
@@ -20,12 +19,13 @@ public class Lab1 {
         int m = args.length - 2;
         char alphabet[] = new char[m];
         for(int i=0; i<m; i++) {
-            alphabet[i] = args[i+2].charAt(0);
+            alphabet[i] = args[i + 2].charAt(0);
         }
 
         Lab1 lab1 = new Lab1();
-        //lab1.compulsory();
+        lab1.compulsory();
         lab1.homework(n, p, m, alphabet);
+        lab1.bonus();
     }
 
     private String createRandomWord(int len, char[] alphabet) {
@@ -66,11 +66,12 @@ public class Lab1 {
         System.out.println("Willy-nilly, this semester I will learn " + languages[sum]);
     }
     void homework(int n, int p, int m, char alphabet[]) {
+        long start = System.nanoTime();
         String[] words = new String[n];
         System.out.print("    ");
         for (int i = 0; i < n; i++) {
             words[i] = createRandomWord(p, alphabet);
-            System.out.print(words[i] + "   ");
+            System.out.print(words[i] + "  ");
         }
         System.out.println();
 
@@ -105,8 +106,8 @@ public class Lab1 {
             adjList myList = new adjList();
             myList.name = words[i];
             int count = 0;
-            for (int j = i; j < n; j++) {
-                if (adjMatrix[i][j] == true) {
+            for (int j = 0; j < n; j++) {
+                if (adjMatrix[i][j] == true && i != j) {
                     myList.neighbors[count] = words[j];
                     count++;
                 }
@@ -117,8 +118,15 @@ public class Lab1 {
             }
             System.out.println();
         }
+
+        long finish = System.nanoTime();
+        long timeElapsed = finish - start;
+        if (n > 30000)
+            System.out.println(timeElapsed + " nanoseconds");
     }
     void bonus() {
-        //Do stuff
+        LinkedList<String> ll = new LinkedList<String>();
+        // se parcurge lista de adiacenta de la Homework in DFS, se marcheaza nodurile vizitate
+        // si se adauga in lista, si se continua cu backtracking in cautarea celui mai lung drum
     }
 }
