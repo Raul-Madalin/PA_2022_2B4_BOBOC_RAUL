@@ -1,9 +1,13 @@
 package com.company;
 
-public class Room {
-    private String name;
+public abstract class Room {
+    protected String name;
     private RoomType type;
     private int cap;
+
+    public RoomType getType() { return type; }
+
+    public void setType(RoomType type) { this.type = type; }
 
     public Room(String name, RoomType type, int cap) {
         this.name = name;
@@ -11,20 +15,10 @@ public class Room {
         this.cap = cap;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public RoomType getType() {
-        return type;
-    }
-
-    public void setType(RoomType type) {
-        this.type = type;
     }
 
     public int getCap() {
@@ -39,8 +33,17 @@ public class Room {
     public String toString() {
         return "Room{" +
                 "name='" + name + '\'' +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 ", cap=" + cap +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Room)) {
+            return false;
+        }
+        Room other = (Room) obj;
+        return name.equals(other.name);
     }
 }

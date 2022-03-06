@@ -54,5 +54,14 @@ public class Event {
                 ", end=" + end +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Event)) {
+            return false;
+        }
+        Event other = (Event) obj;
+        return name.equals(other.name);
+    }
 }
 
