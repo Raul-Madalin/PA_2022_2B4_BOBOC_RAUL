@@ -21,29 +21,19 @@ public class Lab3 {
         Router myRouterB = new Router("routerB", "address5", "location5", "ipAddress2");
         Computer myComputerB = new Computer("computerB", "address6", "location6", "addressIP2", 10);
 
-        Map<String, Integer> myComputerAMap = new HashMap<>();
-        myComputerAMap.put("myRouterA", 10);
-        myComputerAMap.put("mySwitchA", 50);
-        myComputerA.setCosts(myComputerAMap);
+        myComputerA.setCost(myRouterA, 10);
+        myComputerA.setCost(mySwitchA, 50);
 
-        Map<String, Integer> myRouterAMap = new HashMap<>();
-        myRouterAMap.put("mySwitchA", 20);
-        myRouterAMap.put("mySwitchB", 20);
-        myRouterAMap.put("myRouterB", 20);
-        myRouterA.setCosts(myRouterAMap);
+        myRouterA.setCost(mySwitchA, 20);
+        myRouterA.setCost(mySwitchB, 20);
+        myRouterA.setCost(myRouterB, 20);
 
-        Map<String, Integer> mySwitchAMap = new HashMap<>();
-        mySwitchAMap.put("mySwitchB", 10);
-        mySwitchA.setCosts(mySwitchAMap);
+        mySwitchA.setCost(mySwitchB, 10);
 
-        Map<String, Integer> mySwitchBMap = new HashMap<>();
-        mySwitchBMap.put("myRouterB", 30);
-        mySwitchBMap.put("myComputerB", 10);
-        mySwitchB.setCosts(mySwitchBMap);
+        mySwitchB.setCost(myRouterB, 30);
+        mySwitchB.setCost(myComputerB, 10);
 
-        Map<String, Integer> myRouterBMap = new HashMap<>();
-        myRouterBMap.put("myComputerB", 20);
-        myRouterB.setCosts(myRouterBMap);
+        myRouterB.setCost(myComputerB, 20);
 
         myList.add(myComputerA);
         myList.add(myRouterA);
@@ -57,36 +47,26 @@ public class Lab3 {
     }
     void homework () {
         List<Node> myList = new ArrayList<>();
-        Computer myComputerA = new Computer("computerA", "address1", "location1", "addressIP1", 10);
-        Router myRouterA = new Router("routerA", "address2", "location2", "ipAddress1");
-        Switch mySwitchA = new Switch("switchA", "address3", "location3");
-        Switch mySwitchB = new Switch("switchB", "address4", "location4");
-        Router myRouterB = new Router("routerB", "address5", "location5", "ipAddress2");
-        Computer myComputerB = new Computer("computerB", "address6", "location6", "addressIP2", 10);
+        Node myComputerA = new Computer("computerA", "address1", "location1", "addressIP1", 10);
+        Node myRouterA = new Router("routerA", "address2", "location2", "ipAddress1");
+        Node mySwitchA = new Switch("switchA", "address3", "location3");
+        Node mySwitchB = new Switch("switchB", "address4", "location4");
+        Node myRouterB = new Router("routerB", "address5", "location5", "ipAddress2");
+        Node myComputerB = new Computer("computerB", "address6", "location6", "addressIP2", 10);
 
-        Map<String, Integer> myComputerAMap = new HashMap<>();
-        myComputerAMap.put("myRouterA", 10);
-        myComputerAMap.put("mySwitchA", 50);
-        myComputerA.setCosts(myComputerAMap);
+        myComputerA.setCost(myRouterA, 10);
+        myComputerA.setCost(mySwitchA, 50);
 
-        Map<String, Integer> myRouterAMap = new HashMap<>();
-        myRouterAMap.put("mySwitchA", 20);
-        myRouterAMap.put("mySwitchB", 20);
-        myRouterAMap.put("myRouterB", 20);
-        myRouterA.setCosts(myRouterAMap);
+        myRouterA.setCost(mySwitchA, 20);
+        myRouterA.setCost(mySwitchB, 20);
+        myRouterA.setCost(myRouterB, 20);
 
-        Map<String, Integer> mySwitchAMap = new HashMap<>();
-        mySwitchAMap.put("mySwitchB", 10);
-        mySwitchA.setCosts(mySwitchAMap);
+        mySwitchA.setCost(mySwitchB, 10);
 
-        Map<String, Integer> mySwitchBMap = new HashMap<>();
-        mySwitchBMap.put("myRouterB", 30);
-        mySwitchBMap.put("myComputerB", 10);
-        mySwitchB.setCosts(mySwitchBMap);
+        mySwitchB.setCost(myRouterB, 30);
+        mySwitchB.setCost(myComputerB, 10);
 
-        Map<String, Integer> myRouterBMap = new HashMap<>();
-        myRouterBMap.put("myComputerB", 20);
-        myRouterB.setCosts(myRouterBMap);
+        myRouterB.setCost(myComputerB, 20);
 
         myList.add(myComputerA);
         myList.add(myRouterA);
@@ -96,16 +76,8 @@ public class Lab3 {
         myList.add(myComputerB);
 
         Network myNetwork = new Network(myList);
-        /*
-        System.out.println("myComputerA -> " + myComputerA.getCosts());
-        System.out.println("myRouterA -> " + myRouterA.getCosts());
-        System.out.println("mySwitchA -> " + mySwitchA.getCosts());
-        System.out.println("mySwitchB -> " + mySwitchB.getCosts());
-        System.out.println("myRouterB -> " + myRouterB.getCosts());
-        System.out.println("myComputerB -> " + myComputerB.getCosts());
-        */
-        myNetwork.printIdentifiables();
 
+        myNetwork.printIdentifiables();
     }
     void bonus () {
         // bonus

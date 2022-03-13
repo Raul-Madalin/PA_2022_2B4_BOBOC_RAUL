@@ -18,17 +18,9 @@ public class Computer extends Node implements Identifiable, Storage {
         return ipAddress;
     }
 
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
     @Override
     public int getStorageCapacity() {
         return storageCapacity;
-    }
-
-    public void setStorageCapacity(int storageCapacity) {
-        this.storageCapacity = storageCapacity;
     }
 
     @Override
@@ -39,7 +31,7 @@ public class Computer extends Node implements Identifiable, Storage {
                 ", name=" + getName() +
                 ", location=" + getLocation() +
                 ", address=" + getAddress() +
-                ", costs='" + getCosts() + '\'' +
+                ", costs='" + getCost() + '\'' +
                 '}';
     }
 

@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -7,7 +8,8 @@ public abstract class Node implements Comparable<Node> {
     private String name;
     private String address;
     private String location;
-    private Map<String, Integer> costs;
+    private Map<Node, Integer> cost = new HashMap<>();
+    private String type;
 
     protected Node(String name, String address, String location) {
         this.name = name;
@@ -39,12 +41,12 @@ public abstract class Node implements Comparable<Node> {
         this.location = location;
     }
 
-    public Map<String, Integer> getCosts() {
-        return costs;
+    public Map<Node, Integer> getCost() {
+        return cost;
     }
 
-    public void setCosts(Map<String, Integer> costs) {
-        this.costs = costs;
+    public void setCost(Node node, int value) {
+        cost.put(node, value);
     }
 
     @Override
@@ -53,7 +55,7 @@ public abstract class Node implements Comparable<Node> {
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", location='" + location + '\'' +
-                ", costs='" + costs + '\'' +
+                ", costs='" + cost + '\'' +
                 '}';
     }
 
@@ -72,6 +74,6 @@ public abstract class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node node) {
-        return this.name.compareTo(node.name);
+        return this.address.compareTo(node.address);
     }
 }

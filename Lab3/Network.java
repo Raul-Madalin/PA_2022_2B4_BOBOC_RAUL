@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Network {
@@ -23,8 +24,11 @@ public class Network {
     }
 
     public void printIdentifiables() {
+        Collections.sort(nodes, Node::compareTo);
         for (int i = 0; i < nodes.size(); i++) {
-            System.out.println(nodes.get(i));
+            if (nodes.get(i) instanceof Identifiable) {
+                System.out.println(nodes.get(i).getName());
+            }
         }
     }
 

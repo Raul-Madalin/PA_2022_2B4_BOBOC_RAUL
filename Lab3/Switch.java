@@ -14,7 +14,7 @@ public class Switch extends Node {
                 "name=" + getName() +
                 ", location=" + getLocation() +
                 ", address=" + getAddress() +
-                ", costs='" + getCosts() + '\'' +
+                ", costs='" + getCost() + '\'' +
                 '}';
     }
 
