@@ -44,77 +44,51 @@ public class Network {
                 '}';
     }
 
-    int minDistance(int dist[], Boolean sptSet[])
-    {
-        // Initialize min value
-        int min = Integer.MAX_VALUE, min_index = -1;
+    int minDistance(int distance[], Boolean use[]) {
+        int min = Integer.MAX_VALUE;
+        int min_index = -1;
 
         for (int v = 0; v < nodes.size(); v++)
-            if (sptSet[v] == false && dist[v] <= min) {
-                min = dist[v];
+            if (use[v] == false && distance[v] <= min) {
+                min = distance[v];
                 min_index = v;
             }
-
         return min_index;
     }
 
-    // A utility function to print the constructed distance array
-    void printSolution(int dist[])
-    {
-        System.out.println("Vertex \t\t Distance from Source");
+    void printSolution(int distance[]) {
         for (int i = 0; i < nodes.size(); i++) {
             if (nodes.get(i) instanceof Identifiable) {
-                System.out.println(nodes.get(i).getName() + " \t\t " + dist[i]);
+                System.out.println(nodes.get(i).getName() + " \t " + distance[i]);
             }
         }
 
     }
 
-    // Function that implements Dijkstra's single source shortest path
-    // algorithm for a graph represented using adjacency matrix
-    // representation
     void dijkstra(int graph[][], int src) {
-        int dist[] = new int[nodes.size()]; // The output array. dist[i] will hold
-        // the shortest distance from src to i
+        int distance[] = new int[nodes.size()];
+        Boolean use[] = new Boolean[nodes.size()];
 
-        // sptSet[i] will true if vertex i is included in shortest
-        // path tree or shortest distance from src to i is finalized
-        Boolean sptSet[] = new Boolean[nodes.size()];
-
-        // Initialize all distances as INFINITE and stpSet[] as false
         for (int i = 0; i < nodes.size(); i++) {
-            dist[i] = Integer.MAX_VALUE;
-            sptSet[i] = false;
+            distance[i] = Integer.MAX_VALUE;
+            use[i] = false;
         }
 
-        // Distance of source vertex from itself is always 0
-        dist[src] = 0;
+        distance[src] = 0;
 
-        // Find shortest path for all vertices
         for (int count = 0; count < nodes.size() - 1; count++) {
-            // Pick the minimum distance vertex from the set of vertices
-            // not yet processed. u is always equal to src in first
-            // iteration.
-            int u = minDistance(dist, sptSet);
+            int u = minDistance(distance, use);
             if (nodes.get(u) instanceof Identifiable) {
-                sptSet[u] = true;
+                use[u] = true;
 
-
-                // Mark the picked vertex as processed
-
-                // Update dist value of the adjacent vertices of the
-                // picked vertex.
-                for (int v = 0; v < nodes.size(); v++)
-
-                    // Update dist[v] only if is not in sptSet, there is an
-                    // edge from u to v, and total weight of path from src to
-                    // v through u is smaller than current value of dist[v]
-                    if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v])
-                        dist[v] = dist[u] + graph[u][v];
+                for (int v = 0; v < nodes.size(); v++) {
+                    if (!use[v] && graph[u][v] != 0 && distance[u] != Integer.MAX_VALUE && distance[u] + graph[u][v] < distance[v]) {
+                        distance[v] = distance[u] + graph[u][v];
+                    }
+                }
             }
         }
 
-        // print the constructed distance array
-        printSolution(dist);
+        printSolution(distance);
     }
 }
