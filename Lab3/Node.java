@@ -1,12 +1,11 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Node implements Comparable<Node> {
     private String name;
     private String address;
+    private String ipAddress;
     private String location;
     private Map<Node, Integer> cost = new HashMap<>();
     private String type;
@@ -33,6 +32,14 @@ public abstract class Node implements Comparable<Node> {
         this.address = address;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -41,12 +48,21 @@ public abstract class Node implements Comparable<Node> {
         this.location = location;
     }
 
-    public Map<Node, Integer> getCost() {
-        return cost;
+    public Integer getCost(Node node) {
+        if (cost.get(node) == null) return Integer.MAX_VALUE;
+        return cost.get(node);
     }
 
     public void setCost(Node node, int value) {
         cost.put(node, value);
+    }
+
+    public Map<Node, Integer> getMap() {
+        return cost;
+    }
+
+    public void setMap(Map<Node, Integer> cost) {
+        this.cost = cost;
     }
 
     @Override
@@ -56,6 +72,7 @@ public abstract class Node implements Comparable<Node> {
                 ", address='" + address + '\'' +
                 ", location='" + location + '\'' +
                 ", costs='" + cost + '\'' +
+                ", IpAddress='" + ipAddress + '\'' +
                 '}';
     }
 
@@ -74,6 +91,6 @@ public abstract class Node implements Comparable<Node> {
 
     @Override
     public int compareTo(Node node) {
-        return this.address.compareTo(node.address);
+        return this.ipAddress.compareTo(node.getIpAddress());
     }
 }

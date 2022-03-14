@@ -31,7 +31,6 @@ public class Computer extends Node implements Identifiable, Storage {
                 ", name=" + getName() +
                 ", location=" + getLocation() +
                 ", address=" + getAddress() +
-                ", costs='" + getCost() + '\'' +
                 '}';
     }
 

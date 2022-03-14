@@ -23,7 +23,6 @@ public class Router extends Node implements Identifiable{
                 ", name=" + getName() +
                 ", location=" + getLocation() +
                 ", address=" + getAddress() +
-                ", costs='" + getCost() + '\'' +
                 '}';
     }
 
