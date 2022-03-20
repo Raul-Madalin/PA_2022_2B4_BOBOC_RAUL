@@ -11,10 +11,10 @@ import java.util.stream.IntStream;
 
 public class Lab4 {
     public static void main(String[] args) {
-        Lab4 lab3 = new Lab4();
-        //lab3.compulsory();
-        lab3.homework();
-        lab3.bonus();
+        Lab4 lab4 = new Lab4();
+        //lab4.compulsory();
+        lab4.homework();
+        lab4.bonus();
     }
 
     void compulsory() {
