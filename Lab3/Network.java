@@ -22,17 +22,17 @@ public class Network {
     }
 
     public void printIdentifiables() {
-        List<Node> identfiables = new ArrayList<>();
+        List<Node> identifiables = new ArrayList<>();
         for (int i = 0; i < nodes.size(); i++) {
             if (nodes.get(i) instanceof Identifiable) {
-                identfiables.add(nodes.get(i));
+                identifiables.add(nodes.get(i));
             }
         }
-        Collections.sort(identfiables,
-                Comparator.comparing(Node::getIpAddress));
-        for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i) instanceof Identifiable) {
-                System.out.println(nodes.get(i).getName() + " " + ((Identifiable) nodes.get(i)).getIpAddress());
+        identifiables.sort(new IdentifiablesComparator());
+
+        for (int i = 0; i < identifiables.size(); i++) {
+            if (identifiables.get(i) instanceof Identifiable) {
+                System.out.println(identifiables.get(i).getName() + " " + ((Identifiable) identifiables.get(i)).getIpAddress());
             }
         }
     }

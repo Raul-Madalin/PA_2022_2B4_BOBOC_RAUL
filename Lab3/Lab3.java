@@ -86,7 +86,7 @@ public class Lab3 {
 
         Network myNetwork = new Network(myList);
 
-        //myNetwork.printIdentifiables();
+        myNetwork.printIdentifiables();
 
         int graph[][] = new int[myNetwork.getNodes().size()][myNetwork.getNodes().size()];
         for (int i = 0; i < myNetwork.getNodes().size(); i++) {
@@ -103,7 +103,7 @@ public class Lab3 {
             }
             System.out.println();
         }*/
-        myNetwork.dijkstra(graph, 0);
+        //myNetwork.dijkstra(graph, 0);
     }
     void bonus () {
         // bonus
