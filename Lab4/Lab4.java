@@ -111,7 +111,7 @@ public class Lab4 {
 
         String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 
-        PrimMinimumSpanningTree sol = new PrimMinimumSpanningTree<Intersection, Street>((Graph<Intersection, Street>) myCity);
+        //PrimMinimumSpanningTree sol = new PrimMinimumSpanningTree<Intersection, Street>((Graph<Intersection, Street>) myCity);
     }
 
     void bonus() {
