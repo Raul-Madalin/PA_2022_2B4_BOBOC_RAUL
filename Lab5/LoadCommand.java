@@ -15,17 +15,28 @@ public class LoadCommand implements Command{
     private String myPath;
 
     @Override
-    public void command(Catalog myCatalog) throws InvalidCatalogException{
+    public Catalog command(Catalog myCatalog) throws InvalidCatalogException{
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            myCatalog.setItemList(objectMapper.readValue(new File(myPath), new TypeReference<List<Item>>(){}));
+            return objectMapper.readValue(new File(myPath), model.Catalog.class);
+        } catch (IOException myException) {
+            throw new InvalidCatalogException(myException);
+        }
+
+    }
+
+    public Catalog ceva() throws InvalidCatalogException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(new File(myPath), model.Catalog.class);
         } catch (IOException myException) {
             throw new InvalidCatalogException(myException);
         }
     }
 
-    public void command(Catalog loadedCatalog, String myPath) throws InvalidCatalogException {
+
+    public Catalog command(Catalog loadedCatalog, String myPath) throws InvalidCatalogException {
         this.myPath = myPath;
-        command(loadedCatalog);
+        return command(loadedCatalog);
     }
 }

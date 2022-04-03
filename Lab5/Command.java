@@ -4,5 +4,5 @@ import filehandler.InvalidCatalogException;
 import model.Catalog;
 
 public interface Command {
-    void command(Catalog myCatalog) throws InvalidCatalogException;
+    Catalog command(Catalog myCatalog) throws InvalidCatalogException;
 }

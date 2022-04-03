@@ -8,12 +8,14 @@ public class AddCommand implements Command{
     private Item myItem;
 
     @Override
-    public void command(Catalog myCatalog) {
+    public Catalog command(Catalog myCatalog) {
         myCatalog.getItemList().add(myItem);
+        return null;
     }
 
-    public void command(Catalog myCatalog, Item myItem) {
+    public Catalog command(Catalog myCatalog, Item myItem) {
         this.myItem = myItem;
         command(myCatalog);
+        return null;
     }
 }

@@ -1,0 +1,18 @@
+{
+  "name" : "myCatalog",
+  "itemList" : [ {
+    "subtype" : "model.Book",
+    "id" : "knuth67",
+    "title" : "The Art of Computer Programming",
+    "location" : "/home/raul/Raul/UNI/PA/Lab5/keynote_proficient_students_book_answer_keys.pdf",
+    "year" : 1967,
+    "author" : "Donald E. Knuth"
+  }, {
+    "subtype" : "model.Article",
+    "id" : "java17",
+    "title" : "The Java Language Specification",
+    "location" : "https://docs.oracle.com/javase/specs/jls/se17/html/index.html",
+    "year" : 2021,
+    "author" : "James Gosling & others"
+  } ]
+}

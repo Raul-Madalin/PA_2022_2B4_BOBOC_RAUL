@@ -12,18 +12,20 @@ public class SaveCommand implements Command{
     private String myPath;
 
     @Override
-    public void command(Catalog myCatalog) throws InvalidCatalogException {
+    public Catalog command(Catalog myCatalog) throws InvalidCatalogException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         try {
-            objectMapper.writeValue(new File(myPath), myCatalog.getItemList());
+            objectMapper.writeValue(new File(myPath), myCatalog);
         } catch (IOException myException) {
             throw new InvalidCatalogException(myException);
         }
+        return null;
     }
 
-    public void command(Catalog myCatalog, String myPath) throws InvalidCatalogException {
+    public Catalog command(Catalog myCatalog, String myPath) throws InvalidCatalogException {
         this.myPath = myPath;
         command(myCatalog);
+        return null;
     }
 }

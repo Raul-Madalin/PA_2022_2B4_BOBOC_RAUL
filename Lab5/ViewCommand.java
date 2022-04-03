@@ -11,17 +11,19 @@ public class ViewCommand implements Command{
     int index;
 
     @Override
-    public void command(Catalog myCatalog) throws InvalidCatalogException {
+    public Catalog command(Catalog myCatalog) throws InvalidCatalogException {
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.open(new File(myCatalog.getItemList().get(index).getLocation()));
         } catch (IOException myException) {
             throw new InvalidCatalogException(myException);
         }
+        return null;
     }
 
-    public void command(Catalog myCatalog, int index) throws InvalidCatalogException {
+    public Catalog command(Catalog myCatalog, int index) throws InvalidCatalogException {
         this.index = index;
         command(myCatalog);
+        return null;
     }
 }

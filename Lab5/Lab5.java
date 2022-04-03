@@ -48,7 +48,7 @@ public class Lab5 {
     public static void main(String[] args) {
         Lab5 app = new Lab5();
         Catalog myCatalog = new Catalog("myCatalog");
-        Catalog loadedCatalog = new Catalog();
+        Catalog loadedCatalog = new Catalog("loadedCatalog");
         var myBook = new Book("knuth67",
                 "The Art of Computer Programming",
                 "/home/raul/Raul/UNI/PA/Lab5/keynote_proficient_students_book_answer_keys.pdf",
@@ -71,16 +71,20 @@ public class Lab5 {
         } catch (InvalidCatalogException e) {
             e.printStackTrace();
         }
-/*  NOT WORKING
+
         LoadCommand loadCommand = new LoadCommand();
         try {
-            loadCommand.command(loadedCatalog, "/home/raul/Raul/UNI/PA/Lab5/Catalog.json");
+            loadedCatalog = loadCommand.command(loadedCatalog, "/home/raul/Raul/UNI/PA/Lab5/Catalog.json");
+            //loadedCatalog = loadCommand.ceva();
+            System.out.println(loadedCatalog);
+
         } catch (InvalidCatalogException e) {
             e.printStackTrace();
         }
-*/
+
         ListCommand listCommand = new ListCommand();
-        listCommand.command(myCatalog);
+
+        System.out.println(loadedCatalog.toString());
 
         ViewCommand viewCommand = new ViewCommand();
         try {
