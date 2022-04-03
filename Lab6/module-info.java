@@ -1,7 +1,8 @@
-module org.example {
+module com.example.lab6 {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens org.example to javafx.fxml;
-    exports org.example;
+
+    opens com.example.lab6 to javafx.fxml;
+    exports com.example.lab6;
 }
