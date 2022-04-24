@@ -1,33 +1,74 @@
-package Setup;
+package compulsory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Game {
     private final Bag bag = new Bag();
     private final Board board = new Board();
     private final Dictionary dictionary = new Dictionary();
     private final List<Player> players = new ArrayList<>();
+    public LinkedBlockingQueue<Player> currentPlayer = new LinkedBlockingQueue<>(1);
+    private final long maxTime = 30;   // delay in milis
+    public final LinkedBlockingQueue<Integer> maxTimer = new LinkedBlockingQueue<>(1);
 
+    private void startTimer() {
+        Timer timer = new Timer(true);
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                synchronized (maxTimer) {
+                    maxTimer.notify();
+                }
+            }
+        },
+                maxTime * 1000);    // delay to seconds
+    }
     public void addPlayer(Player player) {
         players.add(player);
         player.setGame(this);
     }
-
     public void play() {
+        dictionary.populateList();
         for (Player player : players) {
-            System.out.println(player.getName());
-            for(Player it : players){
-                new Thread(it).start();
-            }
-            while(!bag.getLetters().isEmpty()){
-                // TODO make players actually take letters out so the game can actually stop
-            }
-            for(Player it : players){
-                it.setRunning(false);
+            Runnable runnable = new Player(player.getName(), this, true);
+            Thread thread =new Thread(runnable);
+            thread.start();
+        }
+
+        startTimer();
+        synchronized (maxTimer) {
+            try {
+                maxTimer.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+
+        for (Player player : players) {
+            player.setRunning(false);
+            if (player.getScore() > 0 && player.getName().compareTo("Player 1") == 0)
+                System.out.println(player.getName() + " wins !");
+            if (player.getScore() < 0 && player.getName().compareTo("Player 2") == 0)
+                System.out.println(player.getName() + " wins !");
+            if (player.getScore() == 0)
+                System.out.println("Tie !");
+        }
+        System.out.println("Ended game...");
+        System.exit(1);
+    }
+    public static void main(String args[]) {
+        Game game = new Game();
+        game.addPlayer(new Player("Player 1",game, true));
+        game.addPlayer(new Player("Player 2", game, true));
+        game.play();
+    }
+
+    public Dictionary getDictionary() {
+        return dictionary;
     }
 
     public Bag getBag() {
@@ -38,18 +79,7 @@ public class Game {
         return board;
     }
 
-    public Dictionary getDictionary() {
-        return dictionary;
-    }
-
     public List<Player> getPlayers() {
         return players;
-    }
-
-    public static void main (String args[]) {
-        Game game = new Game();
-        var players = IntStream.rangeClosed(1,3).mapToObj(i -> new Player("Player" + i)).toArray(Player[]::new);
-        IntStream.rangeClosed(0,2).forEach(i -> game.addPlayer(players[i]));
-        game.play();
     }
 }

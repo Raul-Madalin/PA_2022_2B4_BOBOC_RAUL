@@ -1,4 +1,4 @@
-package Setup;
+package compulsory;
 
 public class Tile {
     private final char letter;
@@ -19,7 +19,7 @@ public class Tile {
 
     @Override
     public String toString() {
-        return "Setup.Tile{" +
+        return "Tile{" +
                 "letter=" + letter +
                 ", points=" + points +
                 '}';
