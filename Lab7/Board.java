@@ -1,20 +1,16 @@
-package Setup;
+package compulsory;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class Board {
-    private final List<String> dictionary = new ArrayList<>();
-
-    public synchronized void addWord(Player player, String word) {
-        dictionary.add(word);
+    private final Collection<String> words=new ArrayList<>();
+    public final void addWord(Player player, String word) {
+        words.add(word);
         System.out.println(player.getName() + ": " + word);
     }
-
     @Override
     public String toString() {
-        return "Setup.Board{" +
-                "dictionary=" + dictionary +
-                '}';
+        return words.toString();
     }
 }
